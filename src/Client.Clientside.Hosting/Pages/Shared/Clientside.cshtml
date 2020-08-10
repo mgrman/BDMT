@@ -1,0 +1,22 @@
+﻿@page
+@namespace BDMT.Server.Pages
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = "_Layout";
+}
+
+@section Header{
+
+    <link href="manifest.json" rel="manifest" />
+}
+
+<wasmapp>
+    Loading...
+</wasmapp>
+
+@section Scripts{
+
+    @Html.RenderScripts(BDMT.Client.DependenciesProvider.Scripts)
+    <script>navigator.serviceWorker.register('service-worker.js');</script>
+    <script src="_framework/blazor.webassembly.js"></script>
+}

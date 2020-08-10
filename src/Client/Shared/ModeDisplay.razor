@@ -1,0 +1,43 @@
+﻿@inject IModeInfoService modeInfoService
+@inject IModeManager modeManager
+
+@if (exception != null)
+{
+    <b title="@exception.Message"> ERROR </b>
+}
+else if (initialized)
+{
+    <text> @activeMode </text>
+    @foreach (var mode in availableModes.EmptyIfNull().Where(o => o != activeMode))
+    {
+        <button type="button" class="nav-link btn btn-link" @onclick="async () => await modeManager.SwitchModeAsync(mode)">Switch to @mode</button>
+    }
+}
+
+@code{
+    protected bool initialized;
+
+    protected Exception? exception;
+    protected string? activeMode;
+    protected IReadOnlyList<string>? availableModes;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+
+        try
+        {
+            availableModes = await modeInfoService.GetAvailableModes();
+            activeMode = await modeInfoService.GetModeWhichShouldBeActive();
+        }
+        catch (Exception ex)
+        {
+            exception = ex;
+        }
+        finally
+        {
+            initialized = true;
+        }
+    }
+
+}

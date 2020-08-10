@@ -1,0 +1,32 @@
+@page "/authentication/{action}"
+@inject NavigationManager NavigationManager
+@inject IFormRedirectService FormRedirectService
+Authentication: @Action
+
+@code{
+
+    [Parameter]
+    public string? Action { get; set; }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        base.OnParametersSet();
+
+        switch (Action?.ToLower())
+        {
+            case "profile":
+                NavigationManager.NavigateTo("Identity/Account/Manage", true);
+                break;
+            case "register":
+                NavigationManager.NavigateTo("Identity/Account/Register", true);
+                break;
+            case "login":
+                NavigationManager.NavigateTo("Identity/Account/Login", true);
+                break;
+            case "logout":
+                await FormRedirectService.SubmitFormAsync("Identity/Account/LogOut", null, HttpMethod.Post);
+                break;
+        }
+    }
+
+}

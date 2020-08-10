@@ -1,2 +1,1 @@
-# BDMT
-Blazor Dual Mode Template
+# Blazor Dual Mode Template
