@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using BDMT.Shared;
+﻿using BDMT.Shared;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
-using Microsoft.JSInterop;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace BDMT.Server.Services
 {
@@ -15,7 +13,7 @@ namespace BDMT.Server.Services
         private readonly IModeInfoService modeInfoService;
         private readonly ModesConfiguration modesConfiguration;
 
-        public ModeService(IHttpContextAccessor httpContextAccessor, IOptions<ModesConfiguration> modesConfiguration, IModeInfoService modeInfoService )
+        public ModeService(IHttpContextAccessor httpContextAccessor, IOptions<ModesConfiguration> modesConfiguration, IModeInfoService modeInfoService)
         {
             this.httpContextAccessor = httpContextAccessor;
             this.modeInfoService = modeInfoService;

@@ -1,10 +1,6 @@
 ﻿using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.AspNetCore.Mvc.ViewFeatures;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace BDMT.Server
 {
@@ -18,7 +14,6 @@ namespace BDMT.Server
                 TagBuilder tag = new TagBuilder("script");
                 if (script.EndsWith(".js"))
                 {
-
                     tag.MergeAttribute("src", script);
                 }
                 else
@@ -30,6 +25,5 @@ namespace BDMT.Server
 
             return builder;
         }
-
     }
 }

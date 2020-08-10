@@ -23,4 +23,8 @@
     <ProjectReference Include="..\Client\BDMT.Client.csproj" />
     <ProjectReference Include="..\Shared\BDMT.Shared.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
 </Project>

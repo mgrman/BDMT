@@ -1,5 +1,4 @@
-﻿
-using Microsoft.CodeAnalysis;
+﻿using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Text;
@@ -10,7 +9,6 @@ using System.Text;
 
 namespace ServiceGuard
 {
-
     [Generator]
     public class ServiceGuardGenerator : ISourceGenerator
     {
@@ -19,13 +17,12 @@ namespace ServiceGuard
             // Register a syntax receiver that will be created for each generation pass
             context.RegisterForSyntaxNotifications(() => new TypeDeclarationSyntaxReceiver());
         }
+
         public void Execute(SourceGeneratorContext context)
         {
-
-            // retreive the populated receiver 
+            // retreive the populated receiver
             if (!(context.SyntaxReceiver is TypeDeclarationSyntaxReceiver receiver))
                 return;
-
 
             // begin creating the source we'll inject into the users compilation
             var debugSourceBuilder = new StringBuilder(@"
@@ -34,7 +31,7 @@ namespace ServiceGuard
 {
     public static class Debug
     {
-        public static void LogGeneratedClasses( ) 
+        public static void LogGeneratedClasses( )
         {
 ");
 
@@ -79,7 +76,7 @@ namespace ServiceGuard
 
                 var ctor = implementationSymbol.GetConstructor();
 
-                var typeConstructorArgumentsDefinition =ctor.Parameters.Select((p, i) => $"{p.ToDisplayString()} arg{i}").Concat(new[] { "ServiceGuard.IAuthenticationService authService" }).StringJoin(", ");
+                var typeConstructorArgumentsDefinition = ctor.Parameters.Select((p, i) => $"{p.ToDisplayString()} arg{i}").Concat(new[] { "ServiceGuard.IAuthenticationService authService" }).StringJoin(", ");
                 var typeConstructorArgumentsUsage = ctor.Parameters.Select((p, i) => $"arg{i}").StringJoin(", ");
 
                 var guardedProperties = "";
@@ -119,7 +116,7 @@ namespace ServiceGuard
                             }}";
                     });
 
-                var guardedMethods = guardedVoidMethodsList.Concat(guardedReturnMethodsList).StringJoin(Environment.NewLine );
+                var guardedMethods = guardedVoidMethodsList.Concat(guardedReturnMethodsList).StringJoin(Environment.NewLine);
 
                 var guardedType = $@"
                     namespace {guardedNameSpace}
@@ -137,11 +134,10 @@ namespace ServiceGuard
 
                             {guardedProperties}
 
-                            {guardedMethods}   
+                            {guardedMethods}
                         }}
                     }}";
 
-                
                 debugSourceBuilder.AppendLine($@"Console.WriteLine(System.Text.Encoding.UTF8.GetString(Convert.FromBase64String(@""{Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(guardedType))}"")));");
                 context.AddSource($"{guardedName}", SourceText.From(guardedType, Encoding.UTF8));
             }
@@ -154,7 +150,6 @@ namespace ServiceGuard
 
             // inject the created source into the users compilation
             context.AddSource("serviceGuardGenerator", SourceText.From(debugSourceBuilder.ToString(), Encoding.UTF8));
-
         }
 
         private static string GetGuardCalls(IMethodSymbol m, IEnumerable<AttributeData> interfaceAttrs)
@@ -178,12 +173,11 @@ namespace ServiceGuard
     {
         public static IMethodSymbol GetConstructor(this ITypeSymbol typeSymbol)
         {
-
             foreach (var member in typeSymbol.GetMembers())
             {
                 if (member is IMethodSymbol methodSymbol)
                 {
-                    if(methodSymbol.Name == ".ctor")
+                    if (methodSymbol.Name == ".ctor")
                     {
                         return methodSymbol;
                     }
@@ -191,7 +185,6 @@ namespace ServiceGuard
             }
             return null;
         }
-
 
         public static IEnumerable<AttributeData> GetAuthenticationAttributes(this ISymbol typeSymbol)
         {
@@ -204,6 +197,7 @@ namespace ServiceGuard
                 }
             }
         }
+
         public static bool HasServiceContract(this ISymbol typeSymbol)
         {
             foreach (var attr in typeSymbol.GetAttributes())

@@ -1,6 +1,6 @@
-﻿using System;
-using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
+using System;
 
 namespace BDMT.Server
 {
@@ -26,6 +26,7 @@ namespace BDMT.Server
                 }
             });
     }
+
     public static class Test
     {
         public static void SayHello(this object obj)

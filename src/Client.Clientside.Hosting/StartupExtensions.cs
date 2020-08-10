@@ -1,8 +1,8 @@
+using BDMT.Server;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
-using BDMT.Server;
 
 namespace BDMT.Client.Clientside.Hosting
 {
@@ -26,7 +26,6 @@ namespace BDMT.Client.Clientside.Hosting
                 myOptions.SupportedModes.Add(new ModeConfig("Client-side", "Clientside"));
                 myOptions.SupportedModes.Add(new ModeConfig("Client-side (prerendered)", "ClientsideWithPrerender"));
             });
-
         }
     }
 }

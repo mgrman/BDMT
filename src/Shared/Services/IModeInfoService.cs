@@ -7,7 +7,7 @@ namespace BDMT.Shared
     [ServiceContract]
     public interface IModeInfoService
     {
-       Task< IReadOnlyList<string>> GetAvailableModes();
+        Task<IReadOnlyList<string>> GetAvailableModes();
 
         Task<string> GetModeWhichShouldBeActive();
     }

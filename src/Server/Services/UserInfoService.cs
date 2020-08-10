@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 
 namespace BDMT.Client.Clientside.Hosting
 {
-
     public class UserInfoService : IUserInfoService
     {
         private readonly IHttpContextAccessor httpContextAccessor;
@@ -29,16 +27,16 @@ namespace BDMT.Client.Clientside.Hosting
                 return new UserInfo
                 {
                     IsAuthenticated = false,
-                    Claims= Array.Empty<UserClaim>()
+                    Claims = Array.Empty<UserClaim>()
                 };
             }
 
-            var claims = user.Claims.Select(o => new UserClaim { Type= o.Type,Value= o.Value }).ToList();
+            var claims = user.Claims.Select(o => new UserClaim { Type = o.Type, Value = o.Value }).ToList();
             var info = new UserInfo
             {
                 IsAuthenticated = user.Identity.IsAuthenticated,
                 Claims = claims
-            }; 
+            };
             return info;
         }
     }

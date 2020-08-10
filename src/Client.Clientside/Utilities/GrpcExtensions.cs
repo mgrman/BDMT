@@ -1,13 +1,8 @@
 ﻿using Grpc.Net.Client;
 using Grpc.Net.Client.Web;
-using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.DependencyInjection;
 using ProtoBuf.Grpc.Client;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
-using System.Threading.Tasks;
 
 namespace BDMT.Client.Clientside
 {
@@ -23,7 +18,7 @@ namespace BDMT.Client.Clientside
             });
         }
 
-        public static void AddGrpcCodeFirstService<TService>(this IServiceCollection services) 
+        public static void AddGrpcCodeFirstService<TService>(this IServiceCollection services)
             where TService : class
         {
             services.AddScoped(services =>

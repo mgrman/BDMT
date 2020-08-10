@@ -17,4 +17,8 @@
     <ProjectReference Include="..\Client.Clientside\BDMT.Client.Clientside.csproj" />
     <ProjectReference Include="..\Server.Common\BDMT.Server.Common.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
 </Project>

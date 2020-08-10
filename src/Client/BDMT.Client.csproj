@@ -21,4 +21,8 @@
   <ItemGroup>
     <ProjectReference Include="..\Shared\BDMT.Shared.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
 </Project>

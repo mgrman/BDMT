@@ -1,12 +1,9 @@
-﻿using System;
-using System.Linq;
-using System.Net.Http;
-using System.Net.Http.Json;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using BDMT.Client.Clientside.Hosting;
+﻿using BDMT.Client.Clientside.Hosting;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.JSInterop;
+using System.Linq;
+using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace BDMT.Client.Clientside
 {

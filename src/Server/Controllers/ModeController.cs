@@ -1,7 +1,6 @@
-﻿using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using BDMT.Client;
+using System.Threading.Tasks;
 
 namespace BDMT.Server.Controllers
 {
@@ -22,7 +21,7 @@ namespace BDMT.Server.Controllers
         [Route("/")]
         public async Task<IActionResult> ShowAsync()
         {
-            var viewName=await modeService.GetViewAsync();
+            var viewName = await modeService.GetViewAsync();
             return View(viewName);
         }
 

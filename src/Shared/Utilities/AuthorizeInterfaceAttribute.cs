@@ -6,6 +6,5 @@ namespace BDMT.Shared
     [AttributeUsage(AttributeTargets.Interface, AllowMultiple = true, Inherited = true)]
     public class AuthorizeInterfaceAttribute : AuthorizeAttribute
     {
-
     }
 }

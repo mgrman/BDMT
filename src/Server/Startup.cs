@@ -1,22 +1,19 @@
-using System.Collections.Generic;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using BDMT.Client.Clientside.Hosting;
 using BDMT.Client.Serverside;
 using BDMT.Server.Data;
 using BDMT.Server.Models;
 using BDMT.Server.Services;
-using Microsoft.AspNetCore.StaticFiles;
-using System;
-using Npgsql;
-using BDMT.Client;
 using BDMT.Shared;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.StaticFiles;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Npgsql;
 using ProtoBuf.Grpc.Server;
-using ServiceGuard;
+using System;
 
 namespace BDMT.Server
 {
@@ -42,7 +39,7 @@ namespace BDMT.Server
             }
 
             services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(connectionString));
-        
+
             services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
@@ -145,7 +142,7 @@ namespace BDMT.Server
             return builder.ToString();
         }
 
-        private string? TryConnectionStringsConfig(string name )
+        private string? TryConnectionStringsConfig(string name)
         {
             var connectionString = Configuration.GetSection("ConnectionStrings").GetValue<string>(name);
             if (string.IsNullOrEmpty(connectionString))

@@ -1,15 +1,9 @@
-using System;
-using System.Net.Http;
-using System.Threading.Tasks;
 using BDMT.Client.Clientside.Hosting;
 using BDMT.Shared;
-using Grpc.Net.Client;
-using Grpc.Net.Client.Web;
-using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.DependencyInjection;
-using ProtoBuf.Grpc.Client;
+using System.Threading.Tasks;
 
 namespace BDMT.Client.Clientside
 {

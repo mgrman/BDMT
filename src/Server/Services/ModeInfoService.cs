@@ -1,11 +1,10 @@
-﻿using System;
+﻿using BDMT.Shared;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Options;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using BDMT.Shared;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Options;
-using Microsoft.JSInterop;
 
 namespace BDMT.Server.Services
 {

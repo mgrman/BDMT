@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using BDMT.Shared;
 
 namespace BDMT.Shared
 {

@@ -1,10 +1,10 @@
+using BDMT.Server;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
-using BDMT.Server;
 
 namespace BDMT.Client.Serverside
 {

@@ -1,10 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Authentication;
-using System.Threading.Tasks;
 
 namespace BDMT.Server.Services
 {
@@ -19,7 +15,7 @@ namespace BDMT.Server.Services
 
         public void Validate(AuthorizeAttribute attr)
         {
-            Validate(attr.Policy??"", attr.Roles ?? "", attr.AuthenticationSchemes ?? "");
+            Validate(attr.Policy ?? "", attr.Roles ?? "", attr.AuthenticationSchemes ?? "");
         }
 
         public void Validate(string policy, string roles, string authenticationSchemes)
