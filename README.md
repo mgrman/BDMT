@@ -7,7 +7,7 @@
   * Client-side
   * Client-side with prerendering
 *  Authentication 
-  * Common for both modes
+  * Common for both modes using `Microsoft.AspNetCore.Identity`
   * User login persists changing mode
   * Cookie based
 * Common Services
