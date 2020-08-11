@@ -1,3 +1,41 @@
 ﻿@page "/"
 
-<h1>Hello, world!</h1>
+<h1 id="blazor-dual-mode-template">Blazor Dual Mode Template</h1>
+<h2 id="main-features">Main Features</h2>
+<ul>
+    <li>
+        Dual mode
+        <ul>
+            <li>Server-side</li>
+            <li>Client-side</li>
+            <li>Client-side with prerendering</li>
+        </ul>
+    </li>
+    <li>
+        Authentication
+        <ul>
+            <li>Common for both modes</li>
+            <li>User login persists changing mode</li>
+            <li>Cookie based</li>
+        </ul>
+    </li>
+    <li>
+        Common Services
+        <ul>
+            <li>Same interface used in both modes</li>
+            <li>
+                Server-side the interface can be used directly
+                <ul>
+                    <li>Guard class is generated to still validate Authentication attribute (using custom Code Generator to create the classes)</li>
+                </ul>
+            </li>
+            <li>
+                Client-side the interface is implemented by Code-first GRPC services 
+                <ul>
+                    <li>GRPC service are automatically generated (using protobuf-net.Grpc) from the server side implementation of the interface</li>
+                </ul>
+            </li>
+            <li>Needs to be marked with <code>[ServiceContract]</code> and data types need to be DataContract serializable.</li>
+        </ul>
+    </li>
+</ul>

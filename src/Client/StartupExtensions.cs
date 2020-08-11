@@ -1,5 +1,4 @@
 using BDMT.Client.Serverside;
-using Fluxor;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace BDMT.Client
@@ -12,9 +11,6 @@ namespace BDMT.Client
         {
             services.AddScoped<IFormRedirectService, FormRedirectService>();
             services.AddScoped<IModeManager, ModeManager>();
-
-            var currentAssembly = typeof(StartupExtensions).Assembly;
-            services.AddFluxor(options => options.ScanAssemblies(currentAssembly).UseReduxDevTools());
         }
     }
 }

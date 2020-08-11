@@ -6,8 +6,7 @@ namespace BDMT.Client
     {
         public static IReadOnlyList<string> Scripts { get; } = new[]
         {
-            "_content/BDMT.Client/js/createAndSubmitForm.js",
-            "_content/Fluxor.Blazor.Web/scripts/index.js",
+            "_content/BDMT.Client/js/createAndSubmitForm.js"
         };
     }
 }

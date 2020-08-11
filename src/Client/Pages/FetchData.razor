@@ -1,24 +1,20 @@
 @page "/fetchdata"
-@using BDMT.Shared
-@using Microsoft.AspNetCore.Authorization
-@*@attribute [Authorize]*@
-@inherits Fluxor.Blazor.Web.Components.FluxorComponent
+@inject IWeatherService weatherService
 
 <h1>Weather forecast</h1>
 
-<p>This component demonstrates fetching data from the server.</p>
+<p>This page is used to demonstrate fetching data from server.</p>
+<p>Data is fetched only for logged in users. The error message you see simulates what would the user see if developer forgot to protect access to the service.</p>
+<p>This is especially problematic for server-side mode (Authorize attribute is evaluated).</p>
+<p>With ServiceGuard generated classes the method calls are protected.</p>
 
-@if (WeatherState.Value.IsLoading)
+@if (exception != null)
 {
-    <p>
-        <em>Loading...</em>
-    </p>
+    <p>@exception.GetType().Name<em>@exception.Message</em></p>
 }
-else if (WeatherState.Value.ErrorMessage!=null)
+else if (forecasts == null)
 {
-    <p>
-        <em>ERROR: @WeatherState.Value.ErrorMessage </em>
-    </p>
+    <p><em>Loading...</em></p>
 }
 else
 {
@@ -32,7 +28,7 @@ else
             </tr>
         </thead>
         <tbody>
-            @foreach (var forecast in WeatherState.Value.Forecasts)
+            @foreach (var forecast in forecasts)
             {
                 <tr>
                     <td>@forecast.Date.ToShortDateString()</td>
@@ -43,4 +39,22 @@ else
             }
         </tbody>
     </table>
+}
+
+@code {
+    private IEnumerable<WeatherForecast>? forecasts = null;
+    private Exception? exception = null;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            forecasts = await weatherService.GetWeatherForecasts();
+        }
+        catch(Exception ex)
+        {
+            exception = ex;
+        }
+    }
+
 }

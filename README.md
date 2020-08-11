@@ -1,1 +1,19 @@
 # Blazor Dual Mode Template
+
+
+## Main Features
+* Dual mode
+  * Server-side
+  * Client-side
+  * Client-side with prerendering
+*  Authentication 
+  * Common for both modes
+  * User login persists changing mode
+  * Cookie based
+* Common Services
+  * Same interface used in both modes
+  * Server-side the interface can be used directly
+    * Guard class is generated to still validate Authentication attribute (using custom Code Generator to create the classes)
+  * Client-side the interface is implemented by Code-first GRPC services 
+    * GRPC service are automatically generated (using protobuf-net.Grpc) from the server side implementation of the interface
+  * Needs to be marked with `[ServiceContract]` and data types need to be DataContract serializable.
