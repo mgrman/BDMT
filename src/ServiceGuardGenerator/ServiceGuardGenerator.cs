@@ -79,10 +79,10 @@ namespace ServiceGuard
                 var typeConstructorArgumentsDefinition = ctor.Parameters.Select((p, i) => $"{p.ToDisplayString()} arg{i}").Concat(new[] { "ServiceGuard.IAuthenticationService authService" }).StringJoin(", ");
                 var typeConstructorArgumentsUsage = ctor.Parameters.Select((p, i) => $"arg{i}").StringJoin(", ");
 
-                var guardedProperties = "";
-                //interfaceSymbol.GetMembers().OfType<IPropertySymbol>()
-                //.Where(p=>p.getse)
-                //.Select(p => $"");
+                if (interfaceSymbol.GetMembers().OfType<IPropertySymbol>().Any())
+                {
+                    throw new InvalidOperationException("Guarded classes cannot have any Properties in Service Interface!");
+                }
 
                 var guardedVoidMethodsList = interfaceSymbol.GetMembers().OfType<IMethodSymbol>()
                     .Where(o => o.ReturnsVoid)
@@ -132,9 +132,7 @@ namespace ServiceGuard
                                 this.implementation=new {implementationFullName}({typeConstructorArgumentsUsage});
                             }}
 
-                            {guardedProperties}
-
-                            {guardedMethods}
+                            {guardedMethods}   
                         }}
                     }}";
 
@@ -158,9 +156,9 @@ namespace ServiceGuard
             var authAttrs = interfaceAttrs.Concat(methodAttrs);
             var guards = authAttrs.Select(a =>
             {
-                var policy = a.NamedArguments.Where(o => o.Key == "Policy").Select(o => o.Value.ToCSharpString()).DefaultIfEmpty("\"\"").FirstOrDefault();
-                var roles = a.NamedArguments.Where(o => o.Key == "Roles").Select(o => o.Value.ToCSharpString()).DefaultIfEmpty("\"\"").FirstOrDefault();
-                var authenticationSchemes = a.NamedArguments.Where(o => o.Key == "AuthenticationSchemes").Select(o => o.Value.ToCSharpString()).DefaultIfEmpty("\"\"").FirstOrDefault();
+                var policy = a.NamedArguments.Where(o => o.Key == "Policy").Select(o => o.Value.ToCSharpString()).DefaultIfEmpty("null").FirstOrDefault();
+                var roles = a.NamedArguments.Where(o => o.Key == "Roles").Select(o => o.Value.ToCSharpString()).DefaultIfEmpty("null").FirstOrDefault();
+                var authenticationSchemes = a.NamedArguments.Where(o => o.Key == "AuthenticationSchemes").Select(o => o.Value.ToCSharpString()).DefaultIfEmpty("null").FirstOrDefault();
 
                 return $"authService.Validate({policy},{roles},{authenticationSchemes});";
             })
