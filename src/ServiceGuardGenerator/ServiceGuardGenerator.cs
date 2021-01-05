@@ -12,13 +12,13 @@ namespace ServiceGuard
     [Generator]
     public class ServiceGuardGenerator : ISourceGenerator
     {
-        public void Initialize(InitializationContext context)
+        public void Initialize(GeneratorInitializationContext context)
         {
             // Register a syntax receiver that will be created for each generation pass
             context.RegisterForSyntaxNotifications(() => new TypeDeclarationSyntaxReceiver());
         }
 
-        public void Execute(SourceGeneratorContext context)
+        public void Execute(GeneratorExecutionContext context)
         {
             // retreive the populated receiver
             if (!(context.SyntaxReceiver is TypeDeclarationSyntaxReceiver receiver))
