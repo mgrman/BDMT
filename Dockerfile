@@ -1,9 +1,9 @@
-FROM mcr.microsoft.com/dotnet/aspnet:5.0.1-buster-slim- AS base
+FROM mcr.microsoft.com/dotnet/aspnet:5.0.1-buster-slim AS base
 WORKDIR /app
 EXPOSE 80
 EXPOSE 443
 
-FROM mcr.microsoft.com/dotnet/sdk:5.0-buster-slim AS publish
+FROM mcr.microsoft.com/dotnet/sdk:5.0.101-buster-slim AS publish
 RUN apt-get -qq update && apt-get -qqy --no-install-recommends install wget gnupg \
     git \
     unzip
